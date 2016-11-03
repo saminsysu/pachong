@@ -23,14 +23,22 @@ if __name__=='__main__':
 			# 	fp.write(unicode(tag.span.string)+'\n')
 			# print(tag)		
 			# print type(unicode(tag.span.string))
-			print(tag)			
-			for child in tag.descendants:	
-				if isinstance(child,bs4.element.NavigableString):
-					if is_begin:
-						fp.write(str(count)+'. '+unicode(child)+'\n')
-						is_begin=0
-					else:
-						fp.write(unicode(child)+'\n')
-					print child
+			# print(tag)
+			# print tag.get_text()			
+			# for child in tag.descendants:	
+			# 	if isinstance(child,bs4.element.NavigableString):
+			# 		if is_begin:
+			# 			fp.write(str(count)+'. '+unicode(child)+'\n')
+			# 			is_begin=0
+			# 		else:
+			# 			fp.write(unicode(child)+'\n')
+			# 		print child
+			# print type(tag.get_text())
+			if is_begin:
+				fp.write(str(count)+'. '+tag.get_text()+'\n')
+				is_begin=0
+			else:
+				fp.write(unicode(child)+'\n')
 			count+=1
 			is_begin=1
+
