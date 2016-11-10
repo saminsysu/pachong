@@ -6,7 +6,8 @@
 import threading
 import Queue
 from bs4 import BeautifulSoup
-import requests 
+import requests
+from time import sleep
 
 import sys
 reload(sys)
@@ -46,10 +47,11 @@ def parse_html(threadId):
 			contentcontainer=s.find('div',attrs={'id':'contentcontainer'})
 			title=contentcontainer.find('h1').get_text()
 			content=contentcontainer.find('div',attrs={'id':'cont'}).get_text()
-			queueLock.acquire()
+			# queueLock.acquire()
+			sleep(10)
 			with open('sysu.txt','a+') as fp:
 				fp.write(title+'\n'+content+'\n\n\n')
-			queueLock.release()
+			# queueLock.release()
 
 		else:
 			queueLock.release()
